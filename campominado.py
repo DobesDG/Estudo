@@ -11,8 +11,7 @@ for idx ,difficulties in enumerate(difficulty_mode):
 
 difficulty_choosen = int(input("Choose difficulty: "))
 
-def range_grid(difficulty_choosen):
-    difficulty_choosen = int(input("Choose difficulty: "))
+def range_grid(difficulty_choosen):    
     if difficulty_choosen == 1:
         grid_num = 100
     elif difficulty_choosen == 2:
@@ -21,8 +20,7 @@ def range_grid(difficulty_choosen):
         grid_num = 2500
     return grid_num
 
-print(range_grid(1))
-
+grid_num = range_grid(difficulty_choosen)
 
 
 for x in range(0,grid_num):
