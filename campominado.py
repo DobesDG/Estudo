@@ -2,10 +2,11 @@ import random
 from random import sample
 import tkinter as tk
 
+# BACK-END
 
 grid = []
 
-#Choose difficulty
+# Choose difficulty
 difficulty_mode = ["easy","medium","hard"]
 
 for idx ,difficulties in enumerate(difficulty_mode):
@@ -25,23 +26,31 @@ def range_grid(difficulty_choosen):
         bomb_num = 40
     return (grid_num, bomb_num)
 
+# Define grid and set random bombs
 [grid_num, bomb_num] = range_grid(difficulty_choosen)
 
-#Define grid and set random bombs
 for x in range(0,grid_num):
     grid.append(x)
 
 random_bombs = sample(grid , k = bomb_num)
+print(random_bombs)
 
+# FRONT-END
 
-def criar_botao(idx):
-    botao = tk.Button(root, text=str(idx), width=5, height=2, command=lambda i=idx: botao_clicado(i))
-    botao.grid(row=idx // num_colls, column= idx % num_colls)
+# Create buttons in grid
+def create_button(idx):
+    button = tk.Button(root, text=str(idx), width=5, height=2, command=lambda i=idx: clicked_button(i))
+    button.grid(row=idx // num_colls, column= idx % num_colls)
 
-def botao_clicado(idx):
-    print(f"Botão clicado: Index {idx}")
+# Define button actions in game
+def clicked_button(idx):
+    if idx in random_bombs:
+        print("BOOM!")
+        root.destroy()
+    else:
+        print(f"Botão clicado: Index {idx}")
 
-
+# Create interface 
 root = tk.Tk()
 root.title("Minesweeper")
 
@@ -50,7 +59,7 @@ num_colls = int(grid_num ** (1/2))
 all_btn = num_rows * num_colls
 
 for idx in range(all_btn):
-    criar_botao(idx)
+    create_button(idx)
 
 root.mainloop()
 
