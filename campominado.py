@@ -38,17 +38,28 @@ print(random_bombs)
 # FRONT-END
 
 # Create buttons in grid
+buttons = []
 def create_button(idx):
-    button = tk.Button(root, text=str(idx), width=5, height=2, command=lambda i=idx: clicked_button(i))
+    button = tk.Button(root, text=str(idx), width=5, height=2)
     button.grid(row=idx // num_colls, column= idx % num_colls)
+    button.bind("<Button-1>", lambda event, i=idx: clicked_button(i, event))
+    button.bind("<Button-3>", lambda event, i=idx: clicked_button(i, event))
+    buttons.append(button)
 
 # Define button actions in game
-def clicked_button(idx):
-    if idx in random_bombs:
-        print("BOOM!")
-        root.destroy()
-    else:
+def clicked_button(idx, event):
+    if event.num == 1:
+        if idx in random_bombs:
+            print("BOOM!")
+            root.destroy()
+        else:
+         print(f"Botão clicado: Index {idx}")
+    elif event.num == 3:
         print(f"Botão clicado: Index {idx}")
+        flag(idx)
+
+def flag(idx):
+    buttons[idx].config(text="🚩")
 
 # Create interface 
 root = tk.Tk()
