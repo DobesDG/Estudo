@@ -66,9 +66,17 @@ def flag(idx):
 def update_flags_label():
     flags_label.config(text=f"Bombs Remaing: {bomb_num-flag_count}")
 
+def count_bombs_around(idx):
+    bombs_around = sum(1 for i in range(max(0, idx % num_colls - 1), min(num_colls, idx % num_colls + 2))
+                       for j in range(max(0, idx // num_colls - 1), min(num_rows, idx // num_colls + 2))
+                       if i + j * num_colls in random_bombs)
+
+    return bombs_around
+
 def remove_button(idx):
+    bombs_around = count_bombs_around(idx)
     buttons[idx].grid_forget()
-    label = tk.Label(root, text="", width=5, height=2)
+    label = tk.Label(root, text=str(bombs_around), width=5, height=2)
     label.grid(row=idx // num_colls, column=idx % num_colls)
     buttons[idx] = label
 
