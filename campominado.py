@@ -35,7 +35,6 @@ for x in range(0,grid_num):
     grid.append(x)
 
 random_bombs = sample(grid , k = bomb_num)
-print(random_bombs)
 
 win_list = [ele for ele in grid if ele not in random_bombs]
 
@@ -116,7 +115,7 @@ def win_condition ():
 # Create buttons in grid
 
 def create_button(idx):
-    button = tk.Button(root, text=str(idx), width=5, height=2)
+    button = tk.Button(root, text="", width=5, height=2)
     button.grid(row=idx // num_colls, column= idx % num_colls)
     button.bind("<Button-1>", lambda event, i=idx: clicked_button(i, event))
     button.bind("<Button-3>", lambda event, i=idx: clicked_button(i, event))
