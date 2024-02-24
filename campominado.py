@@ -39,6 +39,7 @@ print(random_bombs)
 
 # Create buttons in grid
 buttons = []
+flag_count = 0
 def create_button(idx):
     button = tk.Button(root, text=str(idx), width=5, height=2)
     button.grid(row=idx // num_colls, column= idx % num_colls)
@@ -53,13 +54,20 @@ def clicked_button(idx, event):
             print("BOOM!")
             root.destroy()
         else:
-         print(f"Botão clicado: Index {idx}")
+         print(f"Botão Esquerdo clicado: Index {idx}")
     elif event.num == 3:
-        print(f"Botão clicado: Index {idx}")
+        print(f"Botão Direito clicado: Index {idx}")          
         flag(idx)
 
 def flag(idx):
-    buttons[idx].config(text="🚩")
+    current_text = buttons[idx]["text"]
+    global flag_count
+    if current_text == "🚩":
+        buttons[idx].config(text=str(idx))  # Voltar ao texto original
+        flag_count -= 1
+    else:
+        buttons[idx].config(text="🚩")  # Definir como bandeira
+        flag_count += 1 
 
 # Create interface 
 root = tk.Tk()
