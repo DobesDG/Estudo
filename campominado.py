@@ -67,7 +67,10 @@ def update_flags_label():
     flags_label.config(text=f"Bombs Remaing: {bomb_num-flag_count}")
 
 def remove_button(idx):
-    buttons[idx].destroy()
+    buttons[idx].grid_forget()
+    label = tk.Label(root, text="", width=5, height=2)
+    label.grid(row=idx // num_colls, column=idx % num_colls)
+    buttons[idx] = label
 
 # FRONT-END
 
