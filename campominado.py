@@ -6,6 +6,7 @@ import tkinter as tk
 
 grid = []
 buttons = []
+removed_buttons = []
 
 # Choose difficulty
 difficulty_mode = ["easy","medium","hard"]
@@ -36,18 +37,18 @@ for x in range(0,grid_num):
 random_bombs = sample(grid , k = bomb_num)
 print(random_bombs)
 
+win_list = [ele for ele in grid if ele not in random_bombs]
+
 # Define button actions in game
 def clicked_button(idx, event):
     if event.num == 1:
         if idx in random_bombs:
             root.destroy()
             lose_game()
-            
         else:
-            print(f"Botão esquerdo clicado: Index {idx}")
             remove_button(idx)
-    elif event.num == 3:
-        print(f"Botão Direito clicado: Index {idx}")          
+            win_condition()
+    elif event.num == 3:          
         flag(idx)
 
 # Define text as flag and Create flag counter      
@@ -74,6 +75,7 @@ def count_bombs_around(idx):
     return bombs_around
 
 def reveal_zeros(idx):
+    global removed_buttons
     for i in range(max(0, idx % num_colls - 1), min(num_colls, idx % num_colls + 2)):
         for j in range(max(0, idx // num_colls - 1), min(num_rows, idx // num_colls + 2)):
             neighbor_idx = i + j * num_colls
@@ -86,8 +88,10 @@ def reveal_zeros(idx):
                 buttons[neighbor_idx].config(state="disabled")
                 if bombs_around == 0:
                     reveal_zeros(neighbor_idx)
+                removed_buttons.append(neighbor_idx)
 
 def remove_button(idx):
+    global removed_buttons
     bombs_around = count_bombs_around(idx)
     buttons[idx].grid_forget()
     label = tk.Label(root, text=str(bombs_around), width=5, height=2)
@@ -97,6 +101,15 @@ def remove_button(idx):
 
     if bombs_around == 0:
         reveal_zeros(idx)
+    removed_buttons.append(idx)
+
+def win_condition ():
+    global removed_buttons
+    global win_list
+    if sorted(removed_buttons) == sorted(win_list):
+        win_game()
+    else:
+        pass
 
 # FRONT-END
 
@@ -117,6 +130,15 @@ def lose_game():
     quit_button = tk.Button(root2, text="   QUIT    ", command= lambda: root2.destroy() ).place(x=70,y=120)
 
     root2.mainloop()
+
+def win_game():
+    root3 = tk.Tk()
+    root3.title("")
+    root3.geometry("225x200")
+    win_lable = tk.Label(root3, text="Congratulation I've won the game!").place(x=20,y=70)
+    quit_button = tk.Button(root3, text="   QUIT    ", command= lambda: root3.destroy() ).place(x=81,y=120)
+
+    root3.mainloop()
 
 num_rows = int(grid_num ** (1/2))
 num_colls = int(grid_num ** (1/2))
