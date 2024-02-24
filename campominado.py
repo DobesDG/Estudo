@@ -73,12 +73,30 @@ def count_bombs_around(idx):
 
     return bombs_around
 
+def reveal_zeros(idx):
+    for i in range(max(0, idx % num_colls - 1), min(num_colls, idx % num_colls + 2)):
+        for j in range(max(0, idx // num_colls - 1), min(num_rows, idx // num_colls + 2)):
+            neighbor_idx = i + j * num_colls
+            if neighbor_idx != idx and buttons[neighbor_idx]["state"] == "normal":
+                bombs_around = count_bombs_around(neighbor_idx)
+                buttons[neighbor_idx].grid_forget()
+                label = tk.Label(root, text=str(bombs_around), width=5, height=2)
+                label.grid(row=neighbor_idx // num_colls, column=neighbor_idx % num_colls)
+                buttons[neighbor_idx] = label
+                buttons[neighbor_idx].config(state="disabled")
+                if bombs_around == 0:
+                    reveal_zeros(neighbor_idx)
+
 def remove_button(idx):
     bombs_around = count_bombs_around(idx)
     buttons[idx].grid_forget()
     label = tk.Label(root, text=str(bombs_around), width=5, height=2)
     label.grid(row=idx // num_colls, column=idx % num_colls)
     buttons[idx] = label
+    buttons[idx].config(state="disabled")
+
+    if bombs_around == 0:
+        reveal_zeros(idx)
 
 # FRONT-END
 
