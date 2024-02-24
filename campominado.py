@@ -40,9 +40,9 @@ print(random_bombs)
 def clicked_button(idx, event):
     if event.num == 1:
         if idx in random_bombs:
-            print("BOOM!")
-            lose_game()
             root.destroy()
+            lose_game()
+            
         else:
             print(f"Botão esquerdo clicado: Index {idx}")
             remove_button(idx)
@@ -85,6 +85,7 @@ def lose_game():
     root2 = tk.Tk()
     root2.title("")
     lose_lable = tk.Label(root2, text="BOOM!").place(x=77,y=70)
+    quit_button = tk.Button(root2, text="   QUIT    ", command= lambda: root2.destroy() ).place(x=70,y=120)
 
     root2.mainloop()
 
