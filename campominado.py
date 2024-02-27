@@ -50,7 +50,7 @@ def clicked_button(idx, event):
     elif event.num == 3:          
         flag(idx)
 
-# Define text as flag and Create flag counter      
+# Define text as flag and create flag counter      
 flag_count = 0
 def flag(idx):
     current_text = buttons[idx]["text"]
@@ -73,6 +73,7 @@ def count_bombs_around(idx):
 
     return bombs_around
 
+# Create and show all cells in grid with no bombs nearby the clicked button
 def reveal_zeros(idx):
     global removed_buttons
     for i in range(max(0, idx % num_colls - 1), min(num_colls, idx % num_colls + 2)):
@@ -93,6 +94,7 @@ def reveal_zeros(idx):
                     reveal_zeros(neighbor_idx)
                 removed_buttons.append(neighbor_idx)
 
+# Remove buttons e create labels with numbers of bombs nearby
 def remove_button(idx):
     global removed_buttons
     bombs_around = count_bombs_around(idx)
@@ -122,7 +124,6 @@ def win_condition ():
 # FRONT-END
 
 # Create buttons in grid
-
 def create_button(idx):
     button = tk.Button(root, 
                        text="", 
@@ -145,6 +146,7 @@ def lose_game():
 
     root2.mainloop()
 
+# Create a win game interface
 def win_game():
     root3 = tk.Tk()
     root3.title("")
@@ -157,6 +159,7 @@ def win_game():
 
     root3.mainloop()
 
+# Set grid rows and collumns for game interface
 num_rows = int(grid_num ** (1/2))
 num_colls = int(grid_num ** (1/2))
 all_btn = num_rows * num_colls
