@@ -56,7 +56,7 @@ def flag(idx):
     current_text = buttons[idx]["text"]
     global flag_count
     if current_text == "🚩":
-        buttons[idx].config(text=str(idx))  # Return text to original text
+        buttons[idx].config(text="")  # Return text to original text
         flag_count -= 1
     else:
         buttons[idx].config(text="🚩")  # Define text as flag
