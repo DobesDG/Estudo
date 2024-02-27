@@ -81,7 +81,11 @@ def reveal_zeros(idx):
             if neighbor_idx != idx and buttons[neighbor_idx]["state"] == "normal":
                 bombs_around = count_bombs_around(neighbor_idx)
                 buttons[neighbor_idx].grid_forget()
-                label = tk.Label(root, text=str(bombs_around), width=5, height=2)
+                label = tk.Label(root, 
+                                 text=str(bombs_around),
+                                 font="Segoe 9 bold", 
+                                 width=5, 
+                                 height=2)
                 label.grid(row=neighbor_idx // num_colls, column=neighbor_idx % num_colls)
                 buttons[neighbor_idx] = label
                 buttons[neighbor_idx].config(state="disabled")
@@ -93,7 +97,12 @@ def remove_button(idx):
     global removed_buttons
     bombs_around = count_bombs_around(idx)
     buttons[idx].grid_forget()
-    label = tk.Label(root, text=str(bombs_around), width=5, height=2)
+    label = tk.Label(root, 
+                     text=str(bombs_around),
+                     font="Segoe 9 bold", 
+                     fg= "red",
+                     width=5, 
+                     height=2)
     label.grid(row=idx // num_colls, column=idx % num_colls)
     buttons[idx] = label
     buttons[idx].config(state="disabled")
@@ -115,7 +124,10 @@ def win_condition ():
 # Create buttons in grid
 
 def create_button(idx):
-    button = tk.Button(root, text="", width=5, height=2)
+    button = tk.Button(root, 
+                       text="", 
+                       width=5, 
+                       height=2)
     button.grid(row=idx // num_colls, column= idx % num_colls)
     button.bind("<Button-1>", lambda event, i=idx: clicked_button(i, event))
     button.bind("<Button-3>", lambda event, i=idx: clicked_button(i, event))
@@ -125,8 +137,11 @@ def create_button(idx):
 def lose_game():
     root2 = tk.Tk()
     root2.title("")
-    lose_lable = tk.Label(root2, text="BOOM!").place(x=77,y=70)
-    quit_button = tk.Button(root2, text="   QUIT    ", command= lambda: root2.destroy() ).place(x=70,y=120)
+    lose_lable = tk.Label(root2, 
+                          text="BOOM!").place(x=77,y=70)
+    quit_button = tk.Button(root2, 
+                            text="   QUIT    ", 
+                            command= lambda: root2.destroy() ).place(x=70,y=120)
 
     root2.mainloop()
 
@@ -134,8 +149,11 @@ def win_game():
     root3 = tk.Tk()
     root3.title("")
     root3.geometry("225x200")
-    win_lable = tk.Label(root3, text="Congratulation I've won the game!").place(x=20,y=70)
-    quit_button = tk.Button(root3, text="   QUIT    ", command= lambda: root3.destroy() ).place(x=81,y=120)
+    win_lable = tk.Label(root3, 
+                         text="Congratulation You've won the game!").place(x=20,y=70)
+    quit_button = tk.Button(root3, 
+                            text="   QUIT    ", 
+                            command= lambda: root3.destroy() ).place(x=81,y=120)
 
     root3.mainloop()
 
@@ -150,7 +168,8 @@ root.title("Minesweeper")
 for idx in range(all_btn):
     create_button(idx)
 
-flags_label = tk.Label(root, text=f"Bombs Remaing: {bomb_num-flag_count}")
+flags_label = tk.Label(root, 
+                       text=f"Bombs Remaing: {bomb_num-flag_count}")
 flags_label.grid(row=num_colls, columnspan=num_colls)
 
 root.mainloop()
