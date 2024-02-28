@@ -7,14 +7,40 @@ import tkinter as tk
 grid = []
 buttons = []
 removed_buttons = []
+difficulty_choosen = int()
 
 # Choose difficulty
-difficulty_mode = ["easy","medium","hard"]
+def set_easy_difficulty():
+    global difficulty_choosen
+    difficulty_choosen = 1
+    diff_root.destroy()
 
-for idx ,difficulties in enumerate(difficulty_mode):
-    print("{}) {}".format(idx + 1, difficulties))
+def set_medium_difficulty():
+    global difficulty_choosen
+    difficulty_choosen = 2
+    diff_root.destroy()
 
-difficulty_choosen = int(input("Choose difficulty: "))
+def set_hard_difficulty():
+    global difficulty_choosen
+    difficulty_choosen = 3
+    diff_root.destroy()
+
+# Create difficulty choose interface
+diff_root = tk.Tk()
+diff_root.title("")
+diff_root.geometry = "200x200"
+diff_label = tk.Label(diff_root,
+                          text= "Choose difficulty").pack()
+easy_btn = tk.Button(diff_root,
+                         text= "Easy",
+                         command= set_easy_difficulty).pack()
+medium_btn = tk.Button(diff_root,
+                         text= "Medium",
+                         command= set_medium_difficulty).pack()
+hard_btn = tk.Button(diff_root,
+                         text= "Hard",
+                         command= set_hard_difficulty).pack()
+diff_root.mainloop()
 
 def range_grid(difficulty_choosen):    
     if difficulty_choosen == 1:
