@@ -190,13 +190,21 @@ def create_button(idx):
 # Create a lose game interface
 def lose_game():
     root2 = tk.Tk()
-    root2.title("")
+    root2.title("You lose!")
+    root2.geometry("225x200")
     root2.iconbitmap("./mineicon.ico")
+    root2.config(bg="brown1",)
     lose_lable = tk.Label(root2, 
-                          text="BOOM!").place(x=77,y=70)
+                          text="BOOM!\n💣💥💣💥💣",
+                          font="HELVETICA 18 bold",
+                          fg="red4",
+                          bg="brown1",).place(x=45,y=30)
     quit_button = tk.Button(root2, 
                             text="   QUIT    ", 
-                            command= lambda: root2.destroy() ).place(x=70,y=120)
+                            font="Segoe 9 bold",
+                            bg="red",
+                            fg="white",
+                            command= lambda: root2.destroy() ).place(x=81,y=120)
 
     root2.mainloop()
 
