@@ -203,13 +203,21 @@ def lose_game():
 # Create a win game interface
 def win_game():
     root3 = tk.Tk()
-    root3.title("")
+    root3.title("You won!")
     root3.geometry("225x200")
     root3.iconbitmap("./mineicon.ico")
+    root3.config(bg="palegreen2")
     win_lable = tk.Label(root3, 
-                         text="Congratulation You've won the game!").place(x=20,y=70)
+                         text="Congratulations,\nYou've won the game!",
+                         font="HELVETICA 13 bold",
+                         fg="green",
+                         bg="palegreen2",).place(x=23,y=50)
     quit_button = tk.Button(root3, 
-                            text="   QUIT    ", 
+                            text="   QUIT    ",
+                            font="Segoe 9 bold",
+                            bg="red",
+                            fg="white",
+                            borderwidth=4,
                             command= lambda: root3.destroy() ).place(x=81,y=120)
 
     root3.mainloop()
