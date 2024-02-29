@@ -191,6 +191,7 @@ def create_button(idx):
 def lose_game():
     root2 = tk.Tk()
     root2.title("")
+    root2.iconbitmap("./mineicon.ico")
     lose_lable = tk.Label(root2, 
                           text="BOOM!").place(x=77,y=70)
     quit_button = tk.Button(root2, 
@@ -204,6 +205,7 @@ def win_game():
     root3 = tk.Tk()
     root3.title("")
     root3.geometry("225x200")
+    root3.iconbitmap("./mineicon.ico")
     win_lable = tk.Label(root3, 
                          text="Congratulation You've won the game!").place(x=20,y=70)
     quit_button = tk.Button(root3, 
@@ -220,7 +222,7 @@ all_btn = num_rows * num_colls
 # Create game interface 
 root = tk.Tk()
 root.title("Minesweeper")
-
+root.iconbitmap("./mineicon.ico")
 for idx in range(all_btn):
     create_button(idx)
 
