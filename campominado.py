@@ -2,14 +2,14 @@ import random
 from random import sample
 import tkinter as tk
 
-# BACK-END
+# BACK-END Game Diffulty
 
 grid = []
 buttons = []
 removed_buttons = []
 difficulty_choosen = int()
 
-# Choose difficulty
+# Set difficulty buttons action
 def set_easy_difficulty():
     global difficulty_choosen
     difficulty_choosen = 1
@@ -25,22 +25,49 @@ def set_hard_difficulty():
     difficulty_choosen = 3
     diff_root.destroy()
 
+# FRONT-END Game Diffulty
+    
 # Create difficulty choose interface
 diff_root = tk.Tk()
-diff_root.title("")
-diff_root.geometry = "200x200"
+diff_root.title("Minesweeper")
+diff_root.geometry = "400x400"
+diff_root.config(bg="Lavenderblush4")
+diff_root.iconbitmap("./mineicon.ico")
 diff_label = tk.Label(diff_root,
-                          text= "Choose difficulty").pack()
+                          text= "Choose Difficulty",
+                          bg="Lavenderblush4",
+                          fg="black",
+                          font="Arial 15 bold").place(x=17,y=0)
 easy_btn = tk.Button(diff_root,
-                         text= "Easy",
-                         command= set_easy_difficulty).pack()
+                         text= "EASY",
+                         command= set_easy_difficulty,
+                         font="Segoe 10 bold",
+                         fg="green",
+                         bg="palegreen2",
+                         borderwidth = 5,
+                         width= 20,
+                         height=2).place(x=13,y=35)
 medium_btn = tk.Button(diff_root,
-                         text= "Medium",
-                         command= set_medium_difficulty).pack()
+                         text= "MEDIUM",
+                         command= set_medium_difficulty,
+                         font="Segoe 10 bold",
+                         fg="goldenrod3",
+                         bg="#ffff4d" ,
+                         borderwidth = 5,
+                         width= 20, 
+                         height=2).place(x=13,y=90)
 hard_btn = tk.Button(diff_root,
-                         text= "Hard",
-                         command= set_hard_difficulty).pack()
+                         text= "HARD",
+                         command= set_hard_difficulty,
+                         font="Segoe 10 bold",
+                         fg="red4",
+                         bg="firebrick1",
+                         borderwidth = 5,
+                         width= 20, 
+                         height=2).place(x=13,y=145)
 diff_root.mainloop()
+
+# BACK-END Game 
 
 def range_grid(difficulty_choosen):    
     if difficulty_choosen == 1:
@@ -147,7 +174,7 @@ def win_condition ():
     else:
         pass
 
-# FRONT-END
+# FRONT-END Game
 
 # Create buttons in grid
 def create_button(idx):
