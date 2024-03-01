@@ -112,7 +112,7 @@ def flag(idx):
         buttons[idx].config(text="")  # Return text to original text
         flag_count -= 1
     else:
-        buttons[idx].config(text="🚩")  # Define text as flag
+        buttons[idx].config(text="🚩", fg="red")  # Define text as flag
         flag_count += 1 
     update_flags_label()
 
