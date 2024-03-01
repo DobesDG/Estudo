@@ -147,7 +147,7 @@ def reveal_zeros(idx):
                     reveal_zeros(neighbor_idx)
                 removed_buttons.append(neighbor_idx)
 
-# Remove buttons e create labels with numbers of bombs nearby
+# Remove buttons and create labels with numbers of bombs nearby
 def remove_button(idx):
     global removed_buttons
     bombs_around = count_bombs_around(idx)
@@ -166,6 +166,7 @@ def remove_button(idx):
         reveal_zeros(idx)
     removed_buttons.append(idx)
 
+# Define a verify list for win condition 
 def win_condition ():
     global removed_buttons
     global win_list
@@ -173,6 +174,16 @@ def win_condition ():
         win_game()
     else:
         pass
+
+# Creates count up timer function
+def timer(sec, min):
+    min, sec = divmod(sec, 60)
+    timer_label.config(text="{:02d}:{:02d}".format(min, sec), font="Segoe 10 bold")
+    sec += 1
+    if sec == 60:
+        min += 1
+        sec = 0
+    root.after(1000, timer, sec, min)  # Calls function after a second
 
 # FRONT-END Game
 
@@ -243,8 +254,17 @@ for idx in range(all_btn):
     create_button(idx)
 
 flags_label = tk.Label(root, 
-                       text=f"Bombs Remaing: {bomb_num-flag_count}")
+                       text=f"Bombs Remaing: {bomb_num-flag_count}", font="Segoe 10 bold")
 flags_label.grid(row=num_colls, columnspan=num_colls)
+
+timer_label = tk.Label(root, 
+                       text="", 
+                       relief="sunken", 
+                       borderwidth=1,
+                       fg="red")
+timer_label.grid(row=num_colls, columnspan=1)
+
+timer(0, 0)  # Set initial values in timer
 
 root.mainloop()
 
