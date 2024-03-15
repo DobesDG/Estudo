@@ -32,7 +32,7 @@ diff_root = tk.Tk()
 diff_root.title("Minesweeper")
 diff_root.geometry = "400x400"
 diff_root.config(bg="Lavenderblush4")
-diff_root.iconbitmap("./mineicon.ico")
+diff_root.iconbitmap("./Minesweeper/mineicon.ico")
 diff_label = tk.Label(diff_root,
                           text= "Choose Difficulty",
                           bg="Lavenderblush4",
@@ -203,7 +203,7 @@ def lose_game():
     root2 = tk.Tk()
     root2.title("You lose!")
     root2.geometry("225x200")
-    root2.iconbitmap("./mineicon.ico")
+    root2.iconbitmap("./Minesweeper/mineicon.ico")
     root2.config(bg="brown1",)
     lose_lable = tk.Label(root2, 
                           text="BOOM!\n💣💥💣💥💣",
@@ -224,7 +224,7 @@ def win_game():
     root3 = tk.Tk()
     root3.title("You won!")
     root3.geometry("225x200")
-    root3.iconbitmap("./mineicon.ico")
+    root3.iconbitmap("./Minesweeper/mineicon.ico")
     root3.config(bg="palegreen2")
     win_lable = tk.Label(root3, 
                          text="Congratulations,\nYou've won the game!",
@@ -249,7 +249,7 @@ all_btn = num_rows * num_colls
 # Create game interface 
 root = tk.Tk()
 root.title("Minesweeper")
-root.iconbitmap("./mineicon.ico")
+root.iconbitmap("./Minesweeper/mineicon.ico")
 for idx in range(all_btn):
     create_button(idx)
 
