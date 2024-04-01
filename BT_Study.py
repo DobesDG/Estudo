@@ -35,6 +35,14 @@ def preorder(r):
         preorder(r.left)
         preorder(r.right)
 
+def postorder(r):
+    if r is None:
+        return
+    else:
+        postorder(r.left)
+        postorder(r.right)
+        print(r.data, end=" ")
+
 if __name__ == '__main__':
     root = Node(50)
     root.insert(20)
@@ -51,5 +59,9 @@ for idx, order in enumerate(orders):
 order_print = int(input("Choose Order: "))
 if order_print == 1:
     inorder(root)
-elif order_print ==2:
+elif order_print == 2:
     preorder(root)
+elif order_print == 3:
+    postorder(root)
+else:
+    print("Invalid Number")
