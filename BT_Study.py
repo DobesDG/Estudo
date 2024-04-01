@@ -24,8 +24,16 @@ def inorder(r):
         return
     else:
         inorder(r.left)
-        print(r.data)
+        print(r.data, end=" ")
         inorder(r.right)
+
+def preorder(r):
+    if r is None:
+        return
+    else:
+        print(r.data, end= " ")
+        preorder(r.left)
+        preorder(r.right)
 
 if __name__ == '__main__':
     root = Node(50)
@@ -36,4 +44,12 @@ if __name__ == '__main__':
     root.insert(70)
     root.insert(55)
 
-inorder(root)
+orders = ["In Order", "Pre Order","Post Order"]
+for idx, order in enumerate(orders):
+    print("{}) {}".format(idx + 1,order))
+
+order_print = int(input("Choose Order: "))
+if order_print == 1:
+    inorder(root)
+elif order_print ==2:
+    preorder(root)
