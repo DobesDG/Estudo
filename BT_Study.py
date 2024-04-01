@@ -1,3 +1,5 @@
+import collections
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -43,6 +45,46 @@ def postorder(r):
         postorder(r.right)
         print(r.data, end=" ")
 
+def treelist(r):
+    if r is None:
+        return
+    else:
+        dict[r.data] = []
+        treelist(r.left)
+        if r.left:
+            dict[r.data].append(r.left.data)
+        if r.right:
+            dict[r.data].append(r.right.data)
+        treelist(r.right)
+    return dict
+
+def bfs(al):
+    queue = collections.deque([50])
+    visited = []
+    while queue: 
+        node = queue.popleft()
+        visited.append(node)
+        [queue.append(ele) for ele in al[node]]
+    print(f"Breadth First Search:\n{visited}")
+
+def order_choosen(order_print):
+    if order_print == 1:
+        print("In Order: ")
+        inorder(root)
+    elif order_print == 2:
+        print("Pre Order: ")
+        preorder(root)
+    elif order_print == 3:
+        print("Post Order: ")
+        postorder(root)
+    elif order_print == 4:
+        global dict 
+        dict = {}
+        adjacency_list = treelist(root)
+        bfs(adjacency_list)
+    else:
+        print("Invalid Number")
+
 if __name__ == '__main__':
     root = Node(50)
     root.insert(20)
@@ -52,16 +94,11 @@ if __name__ == '__main__':
     root.insert(70)
     root.insert(55)
 
-orders = ["In Order", "Pre Order","Post Order"]
-for idx, order in enumerate(orders):
-    print("{}) {}".format(idx + 1,order))
+def main():
+    orders = ["In Order", "Pre Order","Post Order","Breath First Search"]
+    for idx, order in enumerate(orders):
+        print("{}) {}".format(idx + 1, order))
+    order_print = int(input("Choose Order: "))
+    order_choosen(order_print)
 
-order_print = int(input("Choose Order: "))
-if order_print == 1:
-    inorder(root)
-elif order_print == 2:
-    preorder(root)
-elif order_print == 3:
-    postorder(root)
-else:
-    print("Invalid Number")
+main()
