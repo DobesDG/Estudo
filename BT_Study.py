@@ -65,7 +65,7 @@ def bfs(al):
         node = queue.popleft()
         visited.append(node)
         [queue.append(ele) for ele in al[node]]
-    print(f"Breadth First Search:\n{visited}")
+    print(f"Breadth First:\n{visited}")
 
 def order_choosen(order_print):
     if order_print == 1:
@@ -95,10 +95,10 @@ if __name__ == '__main__':
     root.insert(55)
 
 def main():
-    orders = ["In Order", "Pre Order","Post Order","Breath First Search"]
+    orders = ["In Order","Pre Order","Post Order","Breath First"]
     for idx, order in enumerate(orders):
         print("{}) {}".format(idx + 1, order))
-    order_print = int(input("Choose Order: "))
+    order_print = int(input("Choose a search order above: "))
     order_choosen(order_print)
 
 main()
