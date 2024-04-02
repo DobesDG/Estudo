@@ -59,7 +59,7 @@ def treelist(r):
     return dict
 
 def bfs(al):
-    queue = collections.deque([50])
+    queue = collections.deque([root.data])
     visited = []
     while queue: 
         node = queue.popleft()
@@ -67,7 +67,20 @@ def bfs(al):
         [queue.append(ele) for ele in al[node]]
     print(f"Breadth First:\n{visited}")
 
+def dfs(al):
+    stack = collections.deque([root.data])
+    visited = []
+    while stack:
+        node = stack.pop()
+        if node not in visited:
+            visited.append(node)
+            [stack.append(ele) for ele in al[node]]
+    print(f"Depth First:\n{visited}")
+    
 def order_choosen(order_print):
+    global dict 
+    dict = {}
+    adjacency_list = treelist(root)
     if order_print == 1:
         print("In Order: ")
         inorder(root)
@@ -78,10 +91,9 @@ def order_choosen(order_print):
         print("Post Order: ")
         postorder(root)
     elif order_print == 4:
-        global dict 
-        dict = {}
-        adjacency_list = treelist(root)
         bfs(adjacency_list)
+    elif order_print == 5:
+        dfs(adjacency_list)
     else:
         print("Invalid Number")
 
@@ -95,7 +107,7 @@ if __name__ == '__main__':
     root.insert(55)
 
 def main():
-    orders = ["In Order","Pre Order","Post Order","Breath First"]
+    orders = ["In Order","Pre Order","Post Order","Breath First","Depth First"]
     for idx, order in enumerate(orders):
         print("{}) {}".format(idx + 1, order))
     order_print = int(input("Choose a search order above: "))
