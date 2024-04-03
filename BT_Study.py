@@ -47,7 +47,7 @@ def postorder(r):
 
 def treelist(r):
     if r is None:
-        return
+        return 
     else:
         dict[r.data] = []
         treelist(r.left)
@@ -67,15 +67,20 @@ def bfs(al):
         [queue.append(ele) for ele in al[node]]
     print(f"Breadth First:\n{visited}")
 
-def dfs(al):
-    stack = collections.deque([root.data])
+def pos(r):
+    if r is None:
+        return  
+    stack = []
+    stack.append(r)
     visited = []
     while stack:
         node = stack.pop()
-        if node not in visited:
-            visited.append(node)
-            [stack.append(ele) for ele in al[node]]
-    print(f"Depth First:\n{visited}")
+        visited.append(node.data)
+        if node.right:
+            stack.append(node.right)
+        if node.left:
+            stack.append(node.left)
+    print(f"Pre Order Loop Search:\n{visited}")
     
 def order_choosen(order_print):
     global dict 
@@ -93,7 +98,7 @@ def order_choosen(order_print):
     elif order_print == 4:
         bfs(adjacency_list)
     elif order_print == 5:
-        dfs(adjacency_list)
+        pos(root)
     else:
         print("Invalid Number")
 
@@ -107,7 +112,7 @@ if __name__ == '__main__':
     root.insert(55)
 
 def main():
-    orders = ["In Order","Pre Order","Post Order","Breath First","Depth First"]
+    orders = ["In Order","Pre Order","Post Order","Breath First","Pre Order Loop"]
     for idx, order in enumerate(orders):
         print("{}) {}".format(idx + 1, order))
     order_print = int(input("Choose a search order above: "))
