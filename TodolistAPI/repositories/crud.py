@@ -1,9 +1,18 @@
-from data.database import client
+import os
+from dotenv import load_dotenv
+import sys
+load_dotenv()
+MYURI = os.getenv("URI")
+MYSERVER = os.getenv("SERVERAPI")
+PATH = os.getenv("PATHFILE")
+DB = os.getenv("DBNAME")
+COLECTION = os.getenv("COLECTIONNAME")
 
-base = client["Study"]
+sys.path.insert(1,PATH)
+from database import conection
 
-todolist = base["To-do-list"]
+client = conection(MYURI,MYSERVER)
 
-cursor = todolist.find_one({})
+todolist = client[DB][COLECTION]
 
-print(cursor)
+print(todolist.find_one({}))

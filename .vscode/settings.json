@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./TodolistAPI/data",
+        "./TodolistAPI/repositories"
+    ]
+}
