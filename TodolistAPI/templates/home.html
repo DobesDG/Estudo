@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel = 'stylesheet' href="{{url_for('static',filename='css/style.css')}}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>To do's</h1>
+    <div class="content">
+        <form method="GET">
+            <p>
+                <h2>to-do</h2>
+            </p>
+            <p>
+                <b>description</b>
+            </p>
+            <p>
+                <b>start: date</b>
+            </p>
+            <p>
+                <b>end: date</b>
+            </p>
+            <p>
+                <b>remenber: seg,ter,qua,qui,sex</b>
+            </p>
+        </form>
+            <hr>
+            {% for doc in cursor %}
+                <div clas="todo">
+
+                </div>
+            {% endfor %}
+    </div>
+</body>
+</html>

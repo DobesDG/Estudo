@@ -1,16 +1,26 @@
-from flask import request,Flask, Response
+from flask import request,Flask, Response, render_template, redirect,url_for
 import json
-from crud import todolist
+import os
+from dotenv import load_dotenv
+import sys
+load_dotenv()
+MYURI = os.getenv("URI")
+MYSERVER = os.getenv("SERVERAPI")
+PATH = os.getenv("PATHREPO")
+PATH2 = os.getenv("PATHTEMP")
+DB = os.getenv("DBNAME")
+COLECTION = os.getenv("COLECTIONNAME")
+sys.path.insert(1,PATH)
+sys.path.insert(2,PATH2)
 
-app = Flask(__name__)
-@app.route("/to-do-list",methods= ["GET"])
-def getlist():
-    data = list(todolist.find_one({}))
-    return Response(
-        response= json.dumps(data),
-        status= 500,
-        mimetype="application/json"
-    )
+from crud import *
+
+app = Flask(__name__, template_folder = PATH2)
+@app.route("/",methods= ["GET"])
+def get():
+    getallinfo()
+    return render_template('home.html')
+
 
 if __name__ == "__main__":
-    app.run(port=5000,host="localhost",debug=True)
+    app.run(debug=True)
