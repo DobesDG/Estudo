@@ -34,5 +34,3 @@ def createinfo(todo,start,end,description,remember):
 
 def deletebyid(id):
     todolist.delete_one({"_id":ObjectId})
-getallinfo()
-createinfo('teste','2024-04-13','2024-04-14','test',['seg','ter','qua'])

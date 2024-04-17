@@ -15,7 +15,7 @@ sys.path.insert(2,PATH2)
 
 from crud import *
 
-app = Flask(__name__, template_folder = PATH2)
+app = Flask(__name__, template_folder = 'templates/',static_folder = 'static/')
 @app.route("/",methods= ["GET"])
 def get():
     getallinfo()
