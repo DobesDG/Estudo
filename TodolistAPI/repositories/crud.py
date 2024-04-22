@@ -12,7 +12,6 @@ COLECTION = os.getenv("COLECTIONNAME")
 
 sys.path.insert(1,PATH)
 from database import conection
-print(sys.path)
 client = conection(MYURI,MYSERVER)
 
 todolist = client[DB][COLECTION]

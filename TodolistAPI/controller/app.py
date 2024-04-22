@@ -11,15 +11,16 @@ PATH2 = os.getenv("PATHTEMP")
 DB = os.getenv("DBNAME")
 COLECTION = os.getenv("COLECTIONNAME")
 sys.path.insert(1,PATH)
-sys.path.insert(2,PATH2)
 
 from crud import *
 
-app = Flask(__name__, template_folder = 'templates/',static_folder = 'static/')
-@app.route("/",methods= ["GET"])
-def get():
-    getallinfo()
-    return render_template('home.html')
+app = Flask(__name__, template_folder = 'templates/')
+@app.route("/",methods= ["GET","POST","DELETE"])
+def index():
+    if request.method == "GET":
+        getallinfo()
+        return render_template('home.html')
+
 
 
 if __name__ == "__main__":
