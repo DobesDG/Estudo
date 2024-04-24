@@ -1,5 +1,4 @@
-from flask import request,Flask, Response, render_template, redirect,url_for
-import json
+from flask import request,Flask, render_template, redirect, url_for
 import os
 from dotenv import load_dotenv
 import sys
@@ -7,7 +6,6 @@ load_dotenv()
 MYURI = os.getenv("URI")
 MYSERVER = os.getenv("SERVERAPI")
 PATH = os.getenv("PATHREPO")
-PATH2 = os.getenv("PATHTEMP")
 DB = os.getenv("DBNAME")
 COLECTION = os.getenv("COLECTIONNAME")
 sys.path.insert(1,PATH)

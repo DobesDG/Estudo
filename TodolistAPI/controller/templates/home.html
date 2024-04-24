@@ -100,7 +100,11 @@
         <hr>
         {% for todo in todolist %}
             <div class="todo">
-            <p> {{ todo['content'] }} {{ todo['description'] }} {{ todo['start'] }} {{ todo['end'] }} {{ todo['remember'] }} </p>
+            <p>Task: {{ todo['to-do'] }} </p>
+            <p>Description: {{ todo['description'] }} </p>
+            <p>Start Date: {{ todo['start'].strftime('%d/%m/%Y') }} </p>
+            <p>End Date: {{ todo['end'].strftime('%d/%m/%Y') }}  </p>
+            <p>Remember: {{ todo['remember'] }} </p>
             <form method="POST"
                 action ="{{ url_for('delete', id=todo['_id']) }}">
             <input
