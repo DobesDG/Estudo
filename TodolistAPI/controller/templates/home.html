@@ -7,29 +7,109 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>To do's</h1>
+    <h1>To do's List</h1>
     <div class="content">
-        <form method="GET">
-                <h1>To-Do List</h1>
+        <form method="POST">
             <p>
-                <b>description</b>
+                <b><label for = "content">To-Do</label></b>
             </p>
             <p>
-                <b>start: date</b>
+                <input type="text" name="content" placeholder="Insert task name...">
             </p>
             <p>
-                <b>end: date</b>
+                <b><label for = "description">Description</label></b>
             </p>
             <p>
-                <b>remember: seg,ter,qua,qui,sex</b>
+                <input type="text" name="description" placeholder="Insert task description...">
+            </p>
+                <b><label for = "start">Start Date</label></b>
+            </p>
+            <p>
+                <input type="date" name="start">
+            </p>
+            <p>
+                <b><label for = "end">End Date</label></b>
+            </p>
+            <p>
+                <input type="date" name="end">
+            </p>
+            <p>
+            <p>
+                <b><label for = "degree">Remember</label></b>
+            </p>
+            <p>
+                <input 
+                 id = "degree-0"
+                 type="checkbox"
+                 name="degree[]" 
+                 value = "Dom">
+                 <label for = "degree-0">Dom</label>
+            </p>
+            <p>
+                <input 
+                 id = "degree-1"
+                 type="checkbox"
+                 name="degree[]" 
+                 value = "Seg">
+                 <label for = "degree-1">Seg</label>
+            </p>
+            <p>
+                <input 
+                 id = "degree-2"
+                 type="checkbox"
+                 name="degree[]" 
+                 value = "Ter">
+                 <label for = "degree-2">Ter</label>
+            </p>
+            <p>
+                <input 
+                 id = "degree-3"
+                 type="checkbox"
+                 name="degree[]" 
+                 value = "Qua">
+                 <label for = "degree-3">Qua</label>
+            </p>
+            <p>
+                <input 
+                 id = "degree-4"
+                 type="checkbox"
+                 name="degree[]" 
+                 value = "Qui">
+                 <label for = "degree-4">Qui</label>
+            </p>
+            <p>
+                <input 
+                 id = "degree-5"
+                 type="checkbox"
+                 name="degree[]" 
+                 value = "Sex">
+                 <label for = "degree-5">Sex</label>
+            </p>
+            <p>
+                <input 
+                 id = "degree-6"
+                 type="checkbox"
+                 name="degree[]" 
+                 value = "Sáb">
+                 <label for = "degree-6">Sáb</label>
+            </p>
+                <button type="submit">Submit</button>
             </p>
         </form>
-            <hr>
-            {% for doc in cursor %}
-                <div clas="todo">
-
-                </div>
-            {% endfor %}
+        </div>
+        <hr>
+        {% for todo in todolist %}
+            <div class="todo">
+            <p> {{ todo['content'] }} {{ todo['description'] }} {{ todo['start'] }} {{ todo['end'] }} {{ todo['remember'] }} </p>
+            <form method="POST"
+                action ="{{ url_for('delete', id=todo['_id']) }}">
+            <input
+                type="submit"
+                value="Delete To-Do"
+                onclick="return confirm('Are you sure you want to delete this entry ?')"/>
+            </form>
+            </div>
+        {% endfor %}
     </div>
 </body>
 </html>

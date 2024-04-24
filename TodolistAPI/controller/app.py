@@ -15,13 +15,30 @@ sys.path.insert(1,PATH)
 from crud import *
 
 app = Flask(__name__, template_folder = 'templates/')
-@app.route("/",methods= ["GET","POST","DELETE"])
+@app.route("/",methods= ["GET","POST"])
 def index():
     if request.method == "GET":
         getallinfo()
-        return render_template('home.html')
-
-
-
+        all_todos = getallinfo()
+        return render_template('home.html', todolist = all_todos)
+    if request.method == "POST":
+        content = request.form['content']
+        description = request.form['description']
+        start = request.form['start']
+        end = request.form['end']
+        remember = request.form.getlist('degree[]')
+        if len(remember) == 0:
+            remember = "Never"
+        if len(remember) == 7:
+            remember = "Always"
+        createinfo(content,start,end,description,remember)
+        all_todos = todolist.find()
+        return render_template('home.html', todolist = all_todos)
+    
+@app.route("/<id>/delete/", methods = ["POST"])
+def delete(id):
+    deletebyid(id)
+    return redirect(url_for('index'))
+    
 if __name__ == "__main__":
     app.run(debug=True)

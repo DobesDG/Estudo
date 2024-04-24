@@ -18,9 +18,8 @@ todolist = client[DB][COLECTION]
 
 
 def getallinfo():
-    cursor = todolist.find({})
-    for doc in cursor:
-        print(doc)
+    cursor = todolist.find()
+    return cursor
 
 def createinfo(todo,start,end,description,remember):
     todolist.insert_one({
@@ -32,4 +31,4 @@ def createinfo(todo,start,end,description,remember):
         })
 
 def deletebyid(id):
-    todolist.delete_one({"_id":ObjectId})
+    todolist.delete_one({"_id":ObjectId(id)})
