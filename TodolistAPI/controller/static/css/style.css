@@ -1,3 +1,92 @@
-h1 { 
+h1 {
     text-align: center;
+}
+.content {
+    text-align: left; 
+}
+div {
+    position: relative;
+}
+#add-more {
+    display: none; 
+}
+#add-more + h2 label {
+    cursor: pointer;
+}
+#add-more:not(:checked) ~ form {
+    display: none; 
+}
+#add-more + h2 label::before {
+    content: "+ add more"; 
+    padding-right: 5px; 
+    border: 1px solid;
+    border-radius: 2px;
+    padding: 1px 7px;
+}
+
+h2{
+    font-size: 15px;
+    padding: 10px;
+}
+html{
+    background-color: rgb(255, 255, 255);
+    font-family: system-ui;
+    color:black;
+}
+input[name="content"], input[name="description"] {
+    width: 150px;
+    height: 30px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    font-size: 13px;
+    background-color: white;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 3px 5px 3px 5px;
+    transition: width 0.4s ease-in-out;
+}
+input[name="content"]:focus {
+    width: 400px;
+}
+input[name="description"]:focus {
+    width: 400px;
+    padding-top: 10px;
+    padding-bottom: 100px;
+    transition: padding-bottom 0.4s ease-in-out;
+  }
+input[type="date"] {
+    width: 100px;
+    height: 25px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    font-size: 13px;
+    background-color: white;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: auto;
+    transition: width 0.4s ease-in-out;
+}
+.todo {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+input[value="Delete"] {
+    position: absolute;
+    top: 80%;
+    right: 10px;
+    transform: translateY(-50%);
+    padding-right: 5px; 
+    border: none;
+    border-radius: 2px;
+    padding: 5px 10px;
+    background-color: #f44336;
+    font-family: system-ui;
+    color: white;
+    cursor: pointer;
 }
