@@ -90,3 +90,13 @@ input[value="Delete"] {
     color: white;
     cursor: pointer;
 }
+button[value="ADD"] {
+    padding-right: 5px; 
+    border: none;
+    border-radius: 2px;
+    padding: 5px 10px;
+    background-color: #f44336;
+    font-family: system-ui;
+    color: white;
+    cursor: pointer;
+}
